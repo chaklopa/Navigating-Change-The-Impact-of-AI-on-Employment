@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigating Change: The Impact of AI on Employment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            min-height: 100vh;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="20" cy="20" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="30" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 3rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section h2::before {
+            content: '🚀';
+            font-size: 1.5rem;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #e9ecef, #f8f9fa);
+            border: 2px dashed #6c757d;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+            color: #6c757d;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .image-placeholder:hover {
+            background: linear-gradient(45deg, #dee2e6, #e9ecef);
+            border-color: #495057;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            box-shadow: 0 10px 30px rgba(116, 185, 255, 0.3);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #81ecec 0%, #74b9ff 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transform: scale(1);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            display: block;
+        }
+
+        .pros-cons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .pros, .cons {
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .pros {
+            background: linear-gradient(135deg, #00b894 0%, #00cec9 100%);
+            color: white;
+        }
+
+        .cons {
+            background: linear-gradient(135deg, #e17055 0%, #d63031 100%);
+            color: white;
+        }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tool-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 4px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            transform: translateX(10px);
+            border-left-color: #e74c3c;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .references {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-top: 2rem;
+            border-left: 4px solid #17a2b8;
+        }
+
+        .references h3 {
+            color: #17a2b8;
+            margin-bottom: 1rem;
+        }
+
+        .references a {
+            color: #007bff;
+            text-decoration: none;
+            word-break: break-all;
+        }
+
+        .references a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .pros-cons {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 2rem 1rem;
+            }
+
+            .section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Navigating Change: The Impact of AI on Employment</h1>
+            <p class="subtitle">A Personal Journey Through the AI Revolution in Today's Job Market</p>
+        </header>
+
+        <main class="content">
+            <section class="section">
+                <h2>The New Reality of Work</h2>
+                <img src="image1.png" alt="Workplace transformation image showing traditional vs AI-enhanced workplace" style="width: 100%; height: auto; border-radius: 10px; margin: 2rem 0; max-height: 400px; object-fit: contain;"
+                <p>In today's job market, the rapid advancement of technology, particularly artificial intelligence, has dramatically transformed its landscape. While technology once functioned like any other industry, it has now accelerated at an unprecedented rate, leaving many people struggling to keep up.</p>
+
+                <p>I am one such individual—a Sociology graduate (2014) from India and MS in Information Systems graduate (2024) from US with over six years of professional experience in program management, policy management, and product management. Unfortunately, these three areas of expertise are not sufficient to secure a position in the US job market.</p>
+            </section>
+
+            <section class="section">
+                <h2>Finding Direction in the AI Ecosystem</h2>
+                <div class="highlight-box">
+                    <p><strong>Key Insight:</strong> As Prof. Léonard Boussioux mentioned, with current innovations, it's not always necessary to have strong coding skills. Instead, the ability to craft effective prompts and possess a clear vision of your goals are crucial skills for success.</p>
+                </div>
+
+                <h3>The Current AI Tool Landscape</h3>
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h4>🔍 Research & Analytics</h4>
+                        <p>OpenAI Deep Research and Perplexity lead the field for comprehensive analysis and insights</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>💻 Development Solutions</h4>
+                        <p>ChatGPT o-series and Claude 3.7 excel in conversational coding. Cursor and Windsurf serve advanced developers</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>🎨 Creative Applications</h4>
+                        <p>ChatGPT 4o transforms image generation. RunwayML Gen 4 revolutionizes video creation</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>📈 Business Operations</h4>
+                        <p>Specialized tools streamline email management, presentation creation, and workflow automation</p>
+                    </div>
+                </div>
+                <p><strong>For a comprehensive resource guide, visit:</strong> <a href="http://www.leobix.us/genai" target="_blank">www.leobix.us/genai</a></p>
+            </section>
+
+            <section class="section">
+                <h2>The Great Workforce Transformation</h2>
+                <img src="image2.png" alt="Two contrasting images showing people working with robots/AI and traditional workplace concerns" style="width: 100%; height: auto; border-radius: 10px; margin: 2rem 0; max-height: 400px; object-fit: contain;"
+
+                <h3>The Productivity Revolution</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">40%</span>
+                        <p>Productivity boost when AI is used within its optimal range</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">323%</span>
+                        <p>Increase in hiring for AI-skilled workers over 8 years</p>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">400-800M</span>
+                        <p>Jobs potentially displaced globally by 2030</p>
+                    </div>
+                </div>
+
+                <img src="image3.png" alt="Graph showing generative AI productivity enhancement for skilled professionals" style="width: 100%; height: auto; border-radius: 10px; margin: 2rem 0; max-height: 400px; object-fit: contain;"
+
+            <section class="section">
+                <h2>Weighing the Benefits and Challenges</h2>
+                <div class="pros-cons">
+                    <div class="pros">
+                        <h3>✅ The Advantages</h3>
+                        <ul>
+                            <li><strong>Increased Efficiency:</strong> AI automates repetitive tasks, allowing focus on higher-value work</li>
+                            <li><strong>Enhanced Decision-Making:</strong> Quick analysis of vast datasets</li>
+                            <li><strong>Cost Reduction:</strong> Lower operational expenses and fewer human errors</li>
+                            <li><strong>Improved Customer Service:</strong> Instant AI-powered responses</li>
+                            <li><strong>Workforce Planning:</strong> Predictive capabilities for staffing and trends</li>
+                        </ul>
+                    </div>
+                    <div class="cons">
+                        <h3>⚠️ The Challenges</h3>
+                        <ul>
+                            <li><strong>Job Displacement:</strong> Certain roles face replacement risks</li>
+                            <li><strong>Privacy Concerns:</strong> Large-scale data processing creates security risks</li>
+                            <li><strong>Bias Issues:</strong> AI systems can inherit training data biases</li>
+                            <li><strong>Over-Dependence:</strong> Risk of reduced human critical thinking</li>
+                            <li><strong>Ethical Challenges:</strong> Societal impact considerations</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Essential Tools for the Modern Workplace</h2>
+                <img src="image4.png" alt="Infographic showing modern workplace tools and technologies" style="width: 100%; height: auto; border-radius: 10px; margin: 2rem 0; max-height: 400px; object-fit: contain;"
+                <div class="tools-grid">
+                    <div class="tool-card">
+                        <h4>🤝 Collaboration Software</h4>
+                        <p>Microsoft Teams and Slack for team connectivity</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>📋 Project Management</h4>
+                        <p>Asana, Jira, and ClickUp for task organization</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>☁️ Cloud Storage</h4>
+                        <p>Google Drive, Dropbox, and SharePoint for file sharing</p>
+                    </div>
+                    <div class="tool-card">
+                        <h4>🔒 Cybersecurity</h4>
+                        <p>LastPass and Norton 360 for data protection</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <h2>Looking Forward: Adaptation as Strategy</h2>
+                <img src="image5.png" alt="MIT Sloan research visualization about AI-savvy boards and successful companies" style="width: 100%; height: auto; border-radius: 10px; margin: 2rem 0; max-height: 400px; object-fit: contain;"
+                <p>The research from MIT Sloan School of Management demonstrates that successful companies are now prioritizing AI-savvy leadership at the board level. This shift indicates that AI literacy is becoming as fundamental as financial literacy for business leaders.</p>
+
+                <div class="highlight-box">
+                    <p><strong>Key Insight:</strong> AI isn't just changing what we do—it's changing how we think about work itself. The professionals who thrive will be those who view AI as a collaborative tool rather than a competitor.</p>
+                </div>
+            </section>
+
+            <div class="references">
+                <h3>References</h3>
+                <p><a href="https://mitsloan.mit.edu/ideas-made-to-matter/how-generative-ai-can-boost-highly-skilled-workers-productivity" target="_blank">https://mitsloan.mit.edu/ideas-made-to-matter/how-generative-ai-can-boost-highly-skilled-workers-productivity</a></p>
+                <p><a href="https://mitsloan.mit.edu/ideas-made-to-matter/successful-companies-now-have-ai-savvy-boards" target="_blank">https://mitsloan.mit.edu/ideas-made-to-matter/successful-companies-now-have-ai-savvy-boards</a></p>
+            </div>
+
+            <div class="cta-section">
+                <h2>Share Your Thoughts</h2>
+                <p>How do you envision AI transforming your industry? Share your insights and let's continue this important conversation!</p>
+
+                <div class="tags">
+                    <span class="tag">#AI</span>
+                    <span class="tag">#Technology</span>
+                    <span class="tag">#FosterSchoolOfBusiness</span>
+                    <span class="tag">#Seattle</span>
+                    <span class="tag">#CreativeSolutions</span>
+                    <span class="tag">#GenAI</span>
+                </div>
+
+                <p style="margin-top: 2rem; font-size: 0.9rem; opacity: 0.9;">
+                    <em>This post reflects my personal journey and observations, enhanced with AI tools (Claude, ChatGPT and Copilot) for research and drafting. I'm grateful for the opportunity to explore these topics through my work with the AI Task Force at the Foster School of Business.</em>
+                </p>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
